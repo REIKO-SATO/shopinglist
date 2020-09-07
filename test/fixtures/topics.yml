@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  date: 2020-09-02
+  brand: MyString
+  item: MyString
+  size: MyString
+  price: MyString
+  description: MyString
+  image: MyString
+
+two:
+  user_id: 1
+  date: 2020-09-02
+  brand: MyString
+  item: MyString
+  size: MyString
+  price: MyString
+  description: MyString
+  image: MyString
