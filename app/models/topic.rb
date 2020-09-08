@@ -11,4 +11,9 @@ class Topic < ApplicationRecord
   belongs_to :user
   
   mount_uploader :image, ImageUploader
+  
+  REGISTRABLE_ATTRIBUTES = %i(
+    name
+      date(1i) date(2i) date(3i)
+    )
 end

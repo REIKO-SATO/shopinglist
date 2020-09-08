@@ -17,10 +17,24 @@ class TopicsController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @topic = find_topic_by_id
+  end
+  
+  def update
+    @topic = find_topic_by_id
+    @topic.update(topic_params)
+    redirect_to topics_path
+  end
 
   private
   def topic_params
     params.require(:topic).permit(:date, :brand, :item, :size, :price, :description, :image)
+  end
+  
+  def find_topic_by_id
+    Topic.find(params[:id])
   end
   
 end
