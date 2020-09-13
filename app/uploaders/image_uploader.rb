@@ -12,6 +12,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  def size_range
+    1..10.megabytes
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -38,6 +42,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def extension_whitelist
   #   %w(jpg jpeg gif png)
   # end
+  def extension_whitelist
+   %w(jpg jpeg png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

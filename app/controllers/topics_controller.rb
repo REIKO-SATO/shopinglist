@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  before_action :login_check, only: [:new, :edit, :update, :destroy]
+  
   def index
     @topics = Topic.all
   end
@@ -9,7 +11,6 @@ class TopicsController < ApplicationController
   
   def create
     @topic = current_user.topics.new(topic_params)
-
     if @topic.save
       redirect_to topics_path, success: '投稿に成功しました'
     else
@@ -27,6 +28,12 @@ class TopicsController < ApplicationController
     @topic.update(topic_params)
     redirect_to topics_path
   end
+  
+  def destroy
+    @topic = find_topic_by_id
+    @topic.destroy
+    redirect_to topics_path
+  end
 
   private
   def topic_params
@@ -35,6 +42,13 @@ class TopicsController < ApplicationController
   
   def find_topic_by_id
     Topic.find(params[:id])
+  end
+  
+  def login_check
+    unless logged_in?
+      flash[:alert] = "ログインしてください"
+      redirect_to root_path
+    end
   end
   
 end

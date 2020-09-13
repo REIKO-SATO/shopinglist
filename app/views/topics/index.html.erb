@@ -1,5 +1,10 @@
 <div class="topic-index-wrapper">
   <div class="container">
+    <h1>投稿画面からアイテムの投稿をしよう！</h1>
+    <% if logged_in? %>
+      <%= link_to "投稿",topics_new_path %>
+    <% end %>
+    
     <% @topics.each do |topic| %>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -16,7 +21,12 @@
               <li>price：<%= topic.price %></li>
               <li>description：<%= topic.description %></li>
             </ul>
-            <%= link_to "編集", edit_topic_path(topic.id) %>
+            
+            <% if logged_in? %>
+              <%= link_to "編集", edit_topic_path(topic.id) %>
+              <%= link_to "削除", topic_path(topic.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+            <% end %>
+            
           </div>
         </div>
       </div>

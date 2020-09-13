@@ -16,11 +16,13 @@
     
     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
       <div class="container">
-        <%= link_to root_path do %>
-          
+        
+        <% if logged_in? %> 
+          <%= link_to topics_path do %>
             <h7 class="navbar-brand"> shopinglistトップ画面へ</h7>
-          
+          <% end %>
         <% end %>
+        
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
